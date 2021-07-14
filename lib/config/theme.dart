@@ -10,12 +10,12 @@ Color lightCardColor = Colors.white;
 Color lightIndicatorColor = Color(0xFF414042);
 Color lightTextColor = Colors.grey[900];
 
-// Color darkScaffoldBackgroundColor = Colors.black;
-// Color darkBackgroundColor = Color(0xFF1A1A1A);
-// Color darkCardColor = Color(0xFF141414);
-// Color darkIndicatorColor = Color(0xFFFFE6B4);
-// Color darkTextColor =  Colors.white;
-// Color darkTitleTextColor =  Colors.grey[300];
+Color darkScaffoldBackgroundColor = Colors.black;
+Color darkBackgroundColor = Color(0xFF1A1A1A);
+Color darkCardColor = Color(0xFF141414);
+Color darkIndicatorColor = Color(0xFFFFE6B4);
+Color darkTextColor =  Colors.white;
+Color darkTitleTextColor =  Colors.grey[300];
 
 
 ThemeData lightTheme = ThemeData(
@@ -42,42 +42,42 @@ ThemeData lightTheme = ThemeData(
   ),
 );
 
-// ThemeData darkTheme = ThemeData(
-//     fontFamily: primaryFontFamily,
-//     primarySwatch: Colors.teal,
-//     primaryColor: primaryColor,
-//     primaryColorDark: Color(0xFF414042),
-//     primaryColorLight: Color(0xFFFFE6B4),
-//     indicatorColor: Color(0xFFFFE6B4),
-//     accentColor: Color(0xFFFFE6B4),
-//     scaffoldBackgroundColor: darkScaffoldBackgroundColor,
-//     backgroundColor:  darkBackgroundColor,
-//     cardColor: darkCardColor,
-//     dialogBackgroundColor: darkCardColor,
-//     appBarTheme: AppBarTheme(
-//       color: darkCardColor,
-//       textTheme: TextTheme(
-//         headline6: TextStyle(color: darkTextColor),
-//       ),
-//     ),
-//     bottomAppBarColor: darkCardColor,
-//     iconTheme: IconThemeData(
-//       color: darkTextColor,
-//     ),
-//     textTheme: TextTheme(
-//       headline6: TextStyle(color: darkTextColor, fontSize: 22),
-//       headline5: TextStyle(color: darkTextColor, fontSize: 20),
-//       headline4: TextStyle(color: darkTextColor, fontSize: 18),
-//       headline3: TextStyle(color: darkTextColor, fontSize: 14),
-//       headline2: TextStyle(color: darkTextColor, fontSize: 12),
-//       headline1: TextStyle(color: darkTextColor, fontSize: 10),
-//       bodyText1: TextStyle(color: darkTextColor),
-//       bodyText2: TextStyle(color: darkTitleTextColor),
-//     ),
-//     buttonTheme: ButtonThemeData(
-//       buttonColor: primaryColor,
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-//     ));
+ThemeData darkTheme = ThemeData(
+    fontFamily: primaryFontFamily,
+    primarySwatch: Colors.teal,
+    primaryColor: primaryColor,
+    primaryColorDark: Color(0xFF414042),
+    primaryColorLight: Color(0xFFFFE6B4),
+    indicatorColor: Color(0xFFFFE6B4),
+    accentColor: Color(0xFFFFE6B4),
+    scaffoldBackgroundColor: darkScaffoldBackgroundColor,
+    backgroundColor:  darkBackgroundColor,
+    cardColor: darkCardColor,
+    dialogBackgroundColor: darkCardColor,
+    appBarTheme: AppBarTheme(
+      color: darkCardColor,
+      textTheme: TextTheme(
+        headline6: TextStyle(color: darkTextColor),
+      ),
+    ),
+    bottomAppBarColor: darkCardColor,
+    iconTheme: IconThemeData(
+      color: darkTextColor,
+    ),
+    textTheme: TextTheme(
+      headline6: TextStyle(color: darkTextColor, fontSize: 22),
+      headline5: TextStyle(color: darkTextColor, fontSize: 20),
+      headline4: TextStyle(color: darkTextColor, fontSize: 18),
+      headline3: TextStyle(color: darkTextColor, fontSize: 14),
+      headline2: TextStyle(color: darkTextColor, fontSize: 12),
+      headline1: TextStyle(color: darkTextColor, fontSize: 10),
+      bodyText1: TextStyle(color: darkTextColor),
+      bodyText2: TextStyle(color: darkTitleTextColor),
+    ),
+    buttonTheme: ButtonThemeData(
+      buttonColor: primaryColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+    ));
 
 
 
