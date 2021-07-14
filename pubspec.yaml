@@ -1,0 +1,40 @@
+name: news_app
+description: A new Flutter application.
+
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  dio: ^4.0.0
+  dio_cache_interceptor: ^3.0.1
+  provider: ^5.0.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - locale/
+
+  fonts:
+    - family: nexa
+      fonts:
+        - asset: assets/fonts/Nexa.otf
