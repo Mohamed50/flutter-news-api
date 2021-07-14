@@ -1,6 +1,6 @@
-/// continas the supported languages codes
+/// contains the supported languages codes
 List<String> supportedLanguages = ['ar','en'];
-/// continas the supported languages names
+/// contains the supported languages names
 List<String> supportedLanguagesNames = ['العربية','English'];
 
 /// receive the language code and return the language name

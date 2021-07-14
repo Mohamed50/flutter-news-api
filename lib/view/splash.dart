@@ -24,14 +24,19 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      child: Row(
-        children: [
-          TranslatableText("Loading..."),
-          SizedBox(width: 8.0),
-          CircularProgressIndicator(),
-        ],
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TranslatableText("Loading..."),
+            SizedBox(width: 8.0),
+            CircularProgressIndicator(),
+          ],
+        ),
       ),
     );
   }
