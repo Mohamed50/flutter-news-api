@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:news_app/data/config/api-exception.dart';
 
 /// Enum represent the REST API methods
@@ -11,26 +11,6 @@ class ApiProvider {
   static const String _API_URL = baseUrl + "v2/";
   static const String baseUrl = "https://newsapi.org/";
   static const String _API_KEY = "9be37acb14cc4bbdbadddc468d80d308";
-
-  final cacheOptions = CacheOptions(
-    // A default store is required for interceptor.
-    store: MemCacheStore(),
-    // Default.
-    policy: CachePolicy.request,
-    // Optional. Returns a cached response on error but for statuses 401 & 403.
-    hitCacheOnErrorExcept: [401, 403],
-    // Optional. Overrides any HTTP directive to delete entry past this duration.
-    maxStale: const Duration(days: 7),
-    // Default. Allows 3 cache sets and ease cleanup.
-    priority: CachePriority.normal,
-    // Default. Body and headers encryption with your own algorithm.
-    cipher: null,
-    // Default. Key builder to retrieve requests.
-    keyBuilder: CacheOptions.defaultCacheKeyBuilder,
-    // Default. Allows to cache POST requests.
-    // Overriding [keyBuilder] is strongly recommended.
-    allowPostMethod: false,
-  );
 
   Dio dio = Dio();
 
@@ -44,7 +24,7 @@ class ApiProvider {
     dio.options.connectTimeout = 10000; //10s
     dio.options.receiveTimeout = 10000; //10s
     dio.options.contentType = "application/json";
-    dio.interceptors.add(DioCacheInterceptor(options: cacheOptions));
+    dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
   }
 
   void close() {
@@ -55,33 +35,30 @@ class ApiProvider {
 
   /// fetch all news api call
   Future fetchAllNews(String countryCode) async {
-    return await _doRequest(
-        "top-headlines?country=$countryCode&apiKey=$_API_KEY", Method.GET);
+    return await _doRequest("top-headlines?country=$countryCode&apiKey=$_API_KEY", Method.GET, forceRefresh: true);
   }
 
-  Future _doRequest(String path, Method method,
-      {dynamic body, bool forceRefresh: true}) async {
-    Options options = cacheOptions.copyWith(policy: forceRefresh ? CachePolicy.refresh : CachePolicy.forceCache).toOptions();
+  Future _doRequest(String path, Method method, {dynamic body, bool forceRefresh: true}) async {
     Response response;
     try {
       print("Calling API ${dio.options.baseUrl}$path");
       print("Body: $body");
       if (method == Method.POST) {
-        response = await dio.post(path, data: body, options: options);
+        response = await dio.post(path, data: body);
       } else if (method == Method.PUT) {
-        response = await dio.put(path, data: body, options: options);
+        response = await dio.put(path, data: body);
       } else if (method == Method.PATCH) {
-        response = await dio.patch(path, data: body, options: options);
+        response = await dio.patch(path, data: body);
       } else if (method == Method.DELETE) {
-        response = await dio.delete(path, data: body, options: options);
+        response = await dio.delete(path, data: body);
       } else if (method == Method.GET) {
-        response = await dio.get(path, queryParameters: body, options: options);
+        response = await dio.get(path, queryParameters: body, options: buildCacheOptions(Duration(days: 7), forceRefresh: forceRefresh));
       }
       return returnResponse(response);
     } on SocketException {
       throw FetchDataException("No Internet Connection");
     } on DioError catch (e) {
-      handleDioError(e);
+        handleDioError(e);
     }
   }
 
@@ -110,11 +87,13 @@ class ApiProvider {
   handleDioError(DioError e) {
     print(e);
     print(e.type);
+    if(e.type == DioErrorType.other && e.message.contains("SocketException"))
+      throw FetchDataException("No Internet Connection");
+    else
     switch (e.type) {
       case DioErrorType.connectTimeout:
       case DioErrorType.sendTimeout:
       case DioErrorType.receiveTimeout:
-        throw FetchDataException("No Internet Connection");
         break;
       default:
         switch (e.response.statusCode) {
