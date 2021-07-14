@@ -1,5 +1,5 @@
 import 'package:news_app/data/model/article.dart';
-import 'package:news_app/data/resources/api_provider.dart';
+import 'package:news_app/data/resources/api-provider.dart';
 
 /// a class handle the articles data fetching, saving, parsing, or sending to server
 class ArticleService{

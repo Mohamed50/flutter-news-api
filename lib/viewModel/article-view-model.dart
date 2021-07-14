@@ -9,8 +9,8 @@ class ArticleViewModel with ChangeNotifier{
   List<Article> _articles;
   List<Article> get articles => _articles;
 
-  ApiResponse<List<Article>> _apiResponse  = ApiResponse.initial("no data");
-  ApiResponse<List<Article>> get apiResponse => _apiResponse;
+  ApiResponse _apiResponse  = ApiResponse.initial("no data");
+  ApiResponse get apiResponse => _apiResponse;
 
   Article _selectedArticle;
   Article get selectedArticle => _selectedArticle;
@@ -29,7 +29,8 @@ class ArticleViewModel with ChangeNotifier{
       _apiResponse = ApiResponse.completed(articles);
     }
     catch (e){
-      _apiResponse = ApiResponse.error(e.toString());
+      print(e.toString());
+      _apiResponse = ApiResponse.error(e.toString(), exception: e);
     }
     notifyListeners();
   }

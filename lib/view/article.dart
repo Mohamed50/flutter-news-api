@@ -41,11 +41,11 @@ class ArticlePage extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0,),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TranslatableText("Written by"),
+                    TranslatableText("Written by", style: TextStyle(fontSize: 10.0),),
                     SizedBox(width: 8.0),
-                    Text(article.author, style: TextStyle(fontWeight: FontWeight.w700, color: secondaryColor),),
-                    Expanded(child: SizedBox()),
+                    Expanded(child: Text(article.author,softWrap: true, style: TextStyle(fontSize: 12.0 ,fontWeight: FontWeight.w700, color: secondaryColor),)),
                     TimeAgoText(article.publishedAt, style: TextStyle(fontSize: 10.0,fontWeight: FontWeight.w600, color: accentColor),),
                   ],
                 ),
