@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 
 String primaryFontFamily = "nexa";
 
-Color primaryColor = Color(0xFF163B43);
-Color accentColor = Color(0xFF4BC3DE);
-Color lightScaffoldBackgroundColor = Color(0xFFF5F5F5);
+Color primaryColor = Color(0xFF99D8D0);
+Color secondaryColor = Color(0xFF70416D);
+Color accentColor = Color(0xFF170A19);
+Color lightScaffoldBackgroundColor = Color(0xFFE4F2F0);
 Color lightBackgroundColor = Colors.white;
 Color lightCardColor = Colors.white;
-Color lightIndicatorColor = Color(0xFF414042);
+Color lightIndicatorColor = secondaryColor;
 Color lightTextColor = Colors.grey[900];
+Color lightTitleColor = accentColor;
 
 Color darkScaffoldBackgroundColor = Colors.black;
 Color darkBackgroundColor = Color(0xFF1A1A1A);
 Color darkCardColor = Color(0xFF141414);
-Color darkIndicatorColor = Color(0xFFFFE6B4);
-Color darkTextColor =  Colors.white;
-Color darkTitleTextColor =  Colors.grey[300];
-
+Color darkIndicatorColor = secondaryColor;
+Color darkTextColor = Colors.white;
+Color darkTitleTextColor = primaryColor;
 
 ThemeData lightTheme = ThemeData(
   fontFamily: primaryFontFamily,
-  primarySwatch: Colors.teal,
+  primarySwatch: Colors.indigo,
   primaryColor: primaryColor,
   accentColor: accentColor,
   backgroundColor: lightBackgroundColor,
@@ -30,8 +31,11 @@ ThemeData lightTheme = ThemeData(
   primaryColorLight: primaryColor,
   indicatorColor: lightIndicatorColor,
   appBarTheme: AppBarTheme(
-    color: accentColor,
-    textTheme: TextTheme(headline6: TextStyle(color: lightTextColor)),
+    color: primaryColor,
+    textTheme: TextTheme(headline6: TextStyle(color: accentColor, fontSize: 24.0)),
+    iconTheme: IconThemeData(
+      color: accentColor,
+    ),
   ),
   bottomAppBarColor: primaryColor,
   iconTheme: IconThemeData(color: lightTextColor),
@@ -44,14 +48,14 @@ ThemeData lightTheme = ThemeData(
 
 ThemeData darkTheme = ThemeData(
     fontFamily: primaryFontFamily,
-    primarySwatch: Colors.teal,
+    primarySwatch: Colors.indigo,
     primaryColor: primaryColor,
     primaryColorDark: Color(0xFF414042),
     primaryColorLight: Color(0xFFFFE6B4),
     indicatorColor: Color(0xFFFFE6B4),
     accentColor: Color(0xFFFFE6B4),
     scaffoldBackgroundColor: darkScaffoldBackgroundColor,
-    backgroundColor:  darkBackgroundColor,
+    backgroundColor: darkBackgroundColor,
     cardColor: darkCardColor,
     dialogBackgroundColor: darkCardColor,
     appBarTheme: AppBarTheme(
@@ -78,8 +82,6 @@ ThemeData darkTheme = ThemeData(
       buttonColor: primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
     ));
-
-
 
 List<Color> list = [
   Colors.green[400],
@@ -117,22 +119,21 @@ List<Color> darkList = [
   Colors.deepPurple[900],
 ];
 
-
-List<Color> getColorsList(){
+List<Color> getColorsList() {
   return list;
 }
 
-Color getColor(int index){
+Color getColor(int index) {
   index = index % list.length;
   return list[index];
 }
 
-Color getDarkColor(int index){
+Color getDarkColor(int index) {
   index = index % darkList.length;
   return darkList[index];
 }
 
-Color getLightColor(int index){
+Color getLightColor(int index) {
   index = index % lightList.length;
   return lightList[index];
 }

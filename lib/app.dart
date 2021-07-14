@@ -5,7 +5,7 @@ import 'package:news_app/utils/routes.dart';
 import 'package:news_app/viewModel/article-view-model.dart';
 import 'package:news_app/viewModel/setting-view-model.dart';
 import 'package:provider/provider.dart';
-import 'view/static/settings-handler.dart';
+import 'view/customs/settings-handler.dart';
 
 class App extends StatelessWidget {
   const App({Key key}) : super(key: key);

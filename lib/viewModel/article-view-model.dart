@@ -9,8 +9,11 @@ class ArticleViewModel with ChangeNotifier{
   List<Article> _articles;
   List<Article> get articles => _articles;
 
-  ApiResponse _apiResponse  = ApiResponse.initial("no data");
-  ApiResponse get apiResponse => _apiResponse;
+  ApiResponse<List<Article>> _apiResponse  = ApiResponse.initial("no data");
+  ApiResponse<List<Article>> get apiResponse => _apiResponse;
+
+  Article _selectedArticle;
+  Article get selectedArticle => _selectedArticle;
 
   ArticleViewModel(){
     articleService = ArticleService();
@@ -23,11 +26,16 @@ class ArticleViewModel with ChangeNotifier{
     notifyListeners();
     try {
       _articles = await articleService.fetchAllAnnouncement("US");
-      _apiResponse = ApiResponse.completed("articles fetched successfully");
+      _apiResponse = ApiResponse.completed(articles);
     }
     catch (e){
       _apiResponse = ApiResponse.error(e.toString());
     }
+    notifyListeners();
+  }
+
+  void selectArticle(Article article){
+    _selectedArticle = article;
     notifyListeners();
   }
 
